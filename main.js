@@ -77,5 +77,35 @@ mainTabs.addEventListener("click", (e) => {
     if (!e.target.classList.contains("active")) {
       e.target.classList.add("active");
     }
+
+    if (!e.target.classList.contains("gallery")) {
+      root.style.setProperty("--filters-container-height", "0");
+      root.style.setProperty("--filters-wrapper-opacity", "0");
+    } else {
+      root.style.setProperty("--filters-container-height", "3.6rem");
+      root.style.setProperty("--filters-wrapper-opacity", "1");
+    }
+  }
+});
+
+const filterTabs = document.querySelector(".filter-tabs");
+const filterButtons = document.querySelectorAll(".filter-button");
+
+filterTabs.addEventListener("click", (e) => {
+  const root = document.documentElement;
+
+  if (e.target.classList.contains("filter-button")) {
+    root.style.setProperty(
+      "--translate-filters-slider",
+      e.target.dataset.translateValue
+    );
+
+    filterButtons.forEach((filterButton) => {
+      filterButton.classList.remove("filter-active");
+    });
+
+    if (!e.target.classList.contains("filter-active")) {
+      e.target.classList.add("filter-active");
+    }
   }
 });
