@@ -49,13 +49,13 @@ const getColor = (color, variant) => {
   return colors[color][variant].value;
 };
 
-const handleActiveTab = (tabs, event) => {
+const handleActiveTab = (tabs, event, className) => {
   tabs.forEach((tab) => {
-    tab.classList.remove("active");
+    tab.classList.remove(className);
   });
 
-  if (!event.target.classList.contains("active")) {
-    event.target.classList.add("active");
+  if (!event.target.classList.contains(className)) {
+    event.target.classList.add(className);
   }
 };
 
@@ -73,7 +73,7 @@ mainTabs.addEventListener("click", (event) => {
     root.style.setProperty("--main-slider-color", getColor(targetColor, 50));
     root.style.setProperty("--background-color", getColor(targetColor, 100));
 
-    handleActiveTab(roundButtons, event);
+    handleActiveTab(roundButtons, event, "active");
 
     if (!event.target.classList.contains("gallery")) {
       root.style.setProperty("--filters-container-height", "0");
@@ -94,6 +94,6 @@ filterTabs.addEventListener("click", (event) => {
 
   if (event.target.classList.contains("filter-button")) {
     root.style.setProperty("--translate-filters-slider", targetTranslateValue);
-    handleActiveTab(filterButtons, event);
+    handleActiveTab(filterButtons, event, "filter-active");
   }
 });
