@@ -49,40 +49,37 @@ const getColor = (color, variant) => {
   return colors[color][variant].value;
 };
 
-mainTabs.addEventListener("click", (e) => {
-  const root = document.documentElement;
+const handleActiveTab = (tabs, event) => {
+  tabs.forEach((tab) => {
+    tab.classList.remove("active");
+  });
 
-  if (e.target.classList.contains("round-button")) {
+  if (!event.target.classList.contains("active")) {
+    event.target.classList.add("active");
+  }
+};
+
+mainTabs.addEventListener("click", (event) => {
+  const root = document.documentElement;
+  const targetColor = event.target.dataset.color;
+  const targetTranslateValue = event.target.dataset.translateValue;
+
+  if (event.target.classList.contains("round-button")) {
     mainSliderCircle.classList.remove("animate-jello");
     void mainSliderCircle.offsetWidth;
     mainSliderCircle.classList.add("animate-jello");
 
-    root.style.setProperty(
-      "--translate-main-slider",
-      e.target.dataset.translateValue
-    );
-    root.style.setProperty(
-      "--main-slider-color",
-      getColor(e.target.dataset.color, 50)
-    );
-    root.style.setProperty(
-      "--background-color",
-      getColor(e.target.dataset.color, 100)
-    );
+    root.style.setProperty("--translate-main-slider", targetTranslateValue);
+    root.style.setProperty("--main-slider-color", getColor(targetColor, 50));
+    root.style.setProperty("--background-color", getColor(targetColor, 100));
 
-    roundButtons.forEach((roundButton) => {
-      roundButton.classList.remove("active");
-    });
+    handleActiveTab(roundButtons, event);
 
-    if (!e.target.classList.contains("active")) {
-      e.target.classList.add("active");
-    }
-
-    if (!e.target.classList.contains("gallery")) {
+    if (!event.target.classList.contains("gallery")) {
       root.style.setProperty("--filters-container-height", "0");
       root.style.setProperty("--filters-wrapper-opacity", "0");
     } else {
-      root.style.setProperty("--filters-container-height", "3.6rem");
+      root.style.setProperty("--filters-container-height", "3.8rem");
       root.style.setProperty("--filters-wrapper-opacity", "1");
     }
   }
@@ -91,21 +88,12 @@ mainTabs.addEventListener("click", (e) => {
 const filterTabs = document.querySelector(".filter-tabs");
 const filterButtons = document.querySelectorAll(".filter-button");
 
-filterTabs.addEventListener("click", (e) => {
+filterTabs.addEventListener("click", (event) => {
   const root = document.documentElement;
+  const targetTranslateValue = event.target.dataset.translateValue;
 
-  if (e.target.classList.contains("filter-button")) {
-    root.style.setProperty(
-      "--translate-filters-slider",
-      e.target.dataset.translateValue
-    );
-
-    filterButtons.forEach((filterButton) => {
-      filterButton.classList.remove("filter-active");
-    });
-
-    if (!e.target.classList.contains("filter-active")) {
-      e.target.classList.add("filter-active");
-    }
+  if (event.target.classList.contains("filter-button")) {
+    root.style.setProperty("--translate-filters-slider", targetTranslateValue);
+    handleActiveTab(filterButtons, event);
   }
 });

@@ -3,6 +3,7 @@
 /* Colors: https://material.io/resources/color */
 /* Image: https://www.pexels.com/ */
 /* Jello Animation: https://animista.net/play/basic */
+/* Tags: tabbar animations css javascript amazing*/
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
@@ -35,7 +36,7 @@
   --translate-main-slider: 100%;
   --main-slider-color: #e3f2fd;
   --translate-filters-slider: 0;
-  --filters-container-height: 3.6rem;
+  --filters-container-height: 3.8rem;
   --filters-wrapper-opacity: 1;
 }
 
@@ -124,6 +125,7 @@ ul.main-tabs li {
   pointer-events: none;
   height: 2.8rem;
   width: 2.8rem;
+  transform: translate(0, 0);
 }
 
 .main-slider {
@@ -188,7 +190,7 @@ ul.main-tabs li {
 
 .filter-tabs {
   border-radius: 1rem;
-  padding: 3px;
+  padding: 0.3rem;
   overflow: hidden;
   background-color: var(--orange-50);
 }
@@ -207,7 +209,7 @@ ul.main-tabs li {
   border-radius: 0.8rem;
   flex-grow: 1;
   height: 3rem;
-  padding: 0 15px;
+  padding: 0 1.5rem;
   color: var(--orange-700);
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -222,7 +224,7 @@ ul.main-tabs li {
 .filter-slider {
   pointer-events: none;
   position: absolute;
-  padding: 3px;
+  padding: 0.3rem;
   top: 0;
   left: 0;
   right: 0;
@@ -235,7 +237,7 @@ ul.main-tabs li {
   width: 33.33%;
   border-radius: 0.8rem;
   background-color: var(--white);
-  box-shadow: 0 1px 10px -4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0.1rem 1rem -0.4rem rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease-in-out;
   transform: translateX(var(--translate-filters-slider));
 }
